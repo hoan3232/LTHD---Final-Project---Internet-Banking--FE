@@ -1,0 +1,32 @@
+export const data = [
+  {
+    id: 1,
+    name: "name1",
+    nickName: "nickname1",
+    email: "name1@gmai.com",
+    stk: "123456789",
+    phone: "0349958009",
+    bank_balance: 5000,
+    bank: "TDBank",
+  },
+  {
+    id: 2,
+    name: "name2",
+    nickName: "nickname2",
+    email: "name2@gmai.com",
+    stk: "2222222",
+    phone: "034991239",
+    bank_balance: 5000,
+    bank: "TDBank",
+  },
+  {
+    id: 3,
+    name: "name3",
+    nickName: "nickname3",
+    email: "name3@gmai.com",
+    stk: "33333333",
+    phone: "01233009",
+    bank_balance: 5000,
+    bank: "TDBank",
+  },
+];
