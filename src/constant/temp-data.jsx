@@ -4,10 +4,10 @@ export const data = [
     name: "name1",
     nickName: "nickname1",
     email: "name1@gmai.com",
-    stk: "123456789",
+    stk: "1",
     phone: "0349958009",
     bank_balance: 5000,
-    bank: "TDBank",
+    bank: "a",
   },
   {
     id: 2,

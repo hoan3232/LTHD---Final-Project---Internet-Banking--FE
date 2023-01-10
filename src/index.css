@@ -46,6 +46,7 @@ button:hover {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="password"] {
   display: inline-block;
   width: 100%;
@@ -63,6 +64,7 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
+input[type="number"]:focus,
 input[type="password"]:focus {
   box-shadow: 0 0 7px rgba(81, 203, 238, 1);
   border: 1px solid rgba(81, 203, 238, 1);
@@ -204,6 +206,77 @@ table {
   border: 2px solid black;
   padding: 5px 10px;
   font-weight: 700;
+}
+
+input[type="text-ck"] {
+  display: inline-block;
+  width: 100%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  padding: 10px 16px;
+  margin: 0px 10px 0px 0px;
+  border: 1px solid #c5cee0;
+  border-radius: 10px;
+}
+
+.fg button[type="submit-ck"] {
+  border-radius: 10px;
+  background-color: #5797dc;
+  color: white;
+  font-weight: 600;
+  height: 40px;
+  width: 70px;
+  margin-top: 5px;
+}
+
+.form-ck {
+  width: 765px;
+  margin-top: 20px;
+}
+
+.info-ck {
+  color: #333;
+  font-weight: bold;
+  font-size: 25px;
+  border-bottom: 2px solid #333;
+  padding: 30px 0 3px 0;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.form-ck button[type="submit"] {
+  border-radius: 10px;
+  background-color: #5797dc;
+  color: white;
+  font-weight: 600;
+  height: 40px;
+  width: 120px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+button[type="button1-ck"] {
+  margin-top: 20px;
+  margin-left: 20px;
+  height: 30px;
+  font-weight: 700;
+}
+
+.msgerr {
+  text-align: left;
+  color: red;
+  margin-left: 10px;
+}
+
+.msgerr-s {
+  text-align: left;
+  color: red;
+  margin-right: 250px;
 }
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;

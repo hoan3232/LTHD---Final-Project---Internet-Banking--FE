@@ -8,6 +8,9 @@ import {
 } from "react-router-dom";
 import Todo from "./views/Todo.jsx";
 import Login from "./views/Login.jsx";
+import CK from "../src/function/CK.jsx";
+import CKor from "../src/function/CKor.jsx";
+import NN from "../src/function/NN.jsx";
 import "./App.css";
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Todo />} />
+        <Route path="/transfer" element={<CK />} />
+        <Route path="/transferorder" element={<CKor />} />
+        <Route path="/debtreminder" element={<NN />} />
       </Routes>
     </BrowserRouter>
   );
