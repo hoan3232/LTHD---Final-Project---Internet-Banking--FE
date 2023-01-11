@@ -30,7 +30,7 @@ function Todo() {
     <div className="container2">
       <TodoAppContext.Provider value={{ store, dispatch }}>
         <AuthInfo />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <List />
       </TodoAppContext.Provider>
     </div>

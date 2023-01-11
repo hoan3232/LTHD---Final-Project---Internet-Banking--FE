@@ -3,9 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { instance, parseJwt } from "../utils.js";
-export default function Login(props) {
+export default function Changepass(props) {
   const nagivate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); 
 
   const {
     register,
@@ -15,20 +15,16 @@ export default function Login(props) {
   } = useForm();
 
   const onSubmit = async function (data) {
-    console.log(data);
+    // console.log(data);
 
     try {
       const res = await instance.post("/auth", data);
-      console.log(res);
       if (res.data.authenticated) {
         // console.log(res.data.accessToken);
         localStorage.todoApp_accessToken = res.data.accessToken;
 
         const obj = parseJwt(res.data.accessToken);
         localStorage.todoApp_userId = obj.userId;
-        localStorage.todoApp_userSTK = obj.stk;
-        localStorage.todoApp_userName = obj.Name;
-        localStorage.todoApp_userSodu = obj.Sodu;
 
         // console.log(location.state);
         const retUrl = location.state?.from?.pathname || "/";
@@ -52,7 +48,7 @@ export default function Login(props) {
 
   return (
     <div className="container">
-      <h2>Login</h2>
+      <h2>Change Password</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="fg">
           <input
@@ -68,7 +64,17 @@ export default function Login(props) {
         <div className="fg mt-2">
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Enter new password"
+            {...register("password", { required: true })}
+          />
+        </div>
+        <div className="fg">
+          {errors.password && <span>Password is incorrect</span>}
+        </div>
+        <div className="fg mt-2">
+          <input
+            type="password"
+            placeholder="Re-enter new password"
             {...register("password", { required: true })}
           />
         </div>
@@ -76,13 +82,10 @@ export default function Login(props) {
           {errors.password && <span>Password is incorrect</span>}
         </div>
         <div className="fg mt-3">
-          <button type="submit">LOGIN</button>
+          <button type="submit">CONFIRM</button>
         </div>
-        <Link to="/changepass">
-          <div className="changepass">Change Password</div>
-        </Link>
-        <Link to="/employee">
-          <div className="changepass">Employee</div>
+        <Link to="/">
+          <div className="changepass">Back</div>
         </Link>
       </form>
     </div>

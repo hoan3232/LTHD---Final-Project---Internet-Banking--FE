@@ -51,7 +51,9 @@ function ListCK(props) {
         <div onClick={handleNavi2}>
           <button type="button">Nhắc nợ</button>
         </div>
-        <button type="button">Lịch sử giao dịch</button>
+        <Link to="/history">
+          <button type="button">Lịch sử giao dịch</button>
+        </Link>
       </div>
 
       <div className="table">

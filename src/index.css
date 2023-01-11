@@ -278,6 +278,16 @@ button[type="button1-ck"] {
   color: red;
   margin-right: 250px;
 }
+
+.msgerr-ss {
+  text-align: left;
+  color: red;
+  margin-right: 270px;
+}
+
+.changepass {
+  margin-top: 10px;
+}
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
