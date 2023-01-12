@@ -13,12 +13,12 @@ function Employee() {
           <button type="submit">Tạo tài khoản</button>
         </div>
       </Link>
-      <Link to="/changepass">
+      <Link to="/recharge">
         <div className="fg mt-3">
-          <button type="submit">Chuyển tiền</button>
+          <button type="submit">Nạp tiền vào tài khoản</button>
         </div>
       </Link>
-      <Link to="/changepass">
+      <Link to="/rehistory">
         <div className="fg mt-3">
           <button type="submit">Xem lịch sử giao dịch</button>
         </div>

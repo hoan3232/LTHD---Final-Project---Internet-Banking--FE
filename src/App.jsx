@@ -6,6 +6,7 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
+import "./App.css";
 import Todo from "./views/Todo.jsx";
 import Login from "./views/Login.jsx";
 import Changepass from "./views/Changepass.jsx";
@@ -15,7 +16,8 @@ import NN from "../src/function/NN.jsx";
 import History from "../src/function/History.jsx";
 import Employee from "../src/employee/Employee.jsx";
 import Register from "./employee/Register.jsx";
-import "./App.css";
+import Recharge from "./employee/Recharge.jsx";
+import ReHistory from "./employee/ReHistory.jsx";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
         <Route path="/history" element={<History />} />
         <Route path="/employee" element={<Employee />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/recharge" element={<Recharge />} />
+        <Route path="/rehistory" element={<ReHistory />} />
       </Routes>
     </BrowserRouter>
     // <BrowserRouter>

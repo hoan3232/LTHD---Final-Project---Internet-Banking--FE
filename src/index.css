@@ -285,6 +285,25 @@ button[type="button1-ck"] {
   margin-right: 270px;
 }
 
+.msgerr-sss {
+  text-align: left;
+  color: red;
+  margin-right: 230px;
+}
+
+.msgerr-sx4 {
+  text-align: left;
+  color: red;
+  margin-right: 200px;
+}
+
+.msgerr-sx5 {
+  text-align: left;
+  color: red;
+  margin-right: 190px;
+}
+
+
 .changepass {
   margin-top: 10px;
 }

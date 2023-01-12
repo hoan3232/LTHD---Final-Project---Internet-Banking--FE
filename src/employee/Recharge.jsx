@@ -3,17 +3,15 @@ import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function Register(props) {
+function Recharge(props) {
   const [id, setId] = useState("");
-  const [pass, setPass] = useState("");
+  const [numbank, setNumbank] = useState("");
+  const [money, setMoney] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [messageError1, setMessageError1] = useState("");
   const [messageError2, setMessageError2] = useState("");
   const [messageError3, setMessageError3] = useState("");
   const [messageError4, setMessageError4] = useState("");
-  const [messageError5, setMessageError5] = useState("");
 
   const handleSubmitBanking = (event) => {
     if (!id) {
@@ -21,8 +19,8 @@ function Register(props) {
     } else {
       setMessageError1("");
     }
-    if (!pass) {
-      setMessageError2("Hãy nhập mật khẩu");
+    if (!numbank) {
+      setMessageError2("Hãy nhập số tài khoản");
     } else {
       setMessageError2("");
     }
@@ -31,30 +29,24 @@ function Register(props) {
     } else {
       setMessageError3("");
     }
-    if (!email) {
-      setMessageError4("Hãy nhập địa chỉ email");
+    if (!money) {
+      setMessageError4("Hãy nhập số tiền cần nạp");
     } else {
       setMessageError4("");
     }
-    if (!phone) {
-      setMessageError5("Hãy nhập số điện thoại");
-    } else {
-      setMessageError5("");
-    }
     event.preventDefault();
-    if (id && pass && email && phone) {
+    if (id && numbank && name && money) {
       setMessageError1("");
       setMessageError2("");
       setMessageError3("");
       setMessageError4("");
-      setMessageError5("");
       setOpen(true);
     }
   };
 
   return (
     <div className="container2">
-      <h2>Tạo tài khoản</h2>
+      <h2>Nạp tiền vào tài khoản</h2>
       <form onSubmit={handleSubmitBanking}>
         <div className="form-ck">
           <div className="fg">
@@ -65,62 +57,52 @@ function Register(props) {
               onChange={(event) => setId(event.target.value)}
             />
             <input
-              type="password"
-              placeholder="Mật khẩu"
-              value={pass}
-              onChange={(event) => setPass(event.target.value)}
+              type="text"
+              placeholder="Tên người dùng"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
           </div>
           <div className="fg">
             <div className="msgerr">
               {messageError1 && <div>{messageError1}</div>}
             </div>
-            <div className="msgerr-sss">
-              {messageError2 && <div>{messageError2}</div>}
-            </div>
-          </div>
-
-          <div className="fg">
-            <input
-              type="text"
-              placeholder="Tên người dùng"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-            <input type="text" placeholder="Tên gợi nhớ" />
-          </div>
-          <div className="fg">
-            <div className="msgerr">
+            <div className="msgerr-sx5">
               {messageError3 && <div>{messageError3}</div>}
             </div>
           </div>
 
           <div className="fg">
             <input
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              type="number"
+              placeholder="Số tài khoản"
+              value={numbank}
+              onChange={(event) => setNumbank(event.target.value)}
             />
+          </div>
+          <div className="fg">
+            <div className="msgerr">
+              {messageError2 && <div>{messageError2}</div>}
+            </div>
+          </div>
+
+          <div className="fg">
             <input
               type="number"
-              placeholder="Số điện thoại"
-              value={phone}
-              onChange={(event) => setPhone(event.target.value)}
+              placeholder="Số tiền cần nạp"
+              value={money}
+              onChange={(event) => setMoney(event.target.value)}
             />
           </div>
           <div className="fg">
             <div className="msgerr">
               {messageError4 && <div>{messageError4}</div>}
             </div>
-            <div className="msgerr-sx4">
-              {messageError5 && <div>{messageError5}</div>}
-            </div>
           </div>
         </div>
 
         <button type="button1-ck" onSubmit={handleSubmitBanking}>
-          Xác nhận
+          Nạp tiền
         </button>
         <Link to="/employee">
           <button type="button1-ck">Back</button>
@@ -130,4 +112,4 @@ function Register(props) {
   );
 }
 
-export default Register;
+export default Recharge;
