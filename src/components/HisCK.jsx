@@ -22,7 +22,6 @@ export default function HisCK(props) {
     };
     getHis();
   }, []);
-  console.log(list);
   let count = 0;
   return (
     <div className="container2">
