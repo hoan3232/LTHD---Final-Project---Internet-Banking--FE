@@ -1,11 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 
 import { instance, parseJwt } from "../utils.js";
-
-export default function Login(props) {
+export default function LoginEmployee(props) {
   const nagivate = useNavigate();
   const location = useLocation();
 
@@ -30,7 +28,7 @@ export default function Login(props) {
         localStorage.todoApp_userSodu = obj.SoDu;
 
         // console.log(location.state);
-        const retUrl = location.state?.from?.pathname || "/";
+        const retUrl = location.state?.from?.pathname || "/employee";
         nagivate(retUrl);
       } else {
         alert("Invalid login.");
@@ -77,15 +75,6 @@ export default function Login(props) {
         <div className="fg mt-3">
           <button type="submit">LOGIN</button>
         </div>
-        <Link to="/submitemail">
-          <div className="changepass">Change Password</div>
-        </Link>
-        <Link to="/employee">
-          <div className="changepass">Employee</div>
-        </Link>
-        <Link to="/administrator">
-          <div className="changepass">Administrator</div>
-        </Link>
       </form>
     </div>
   );
