@@ -61,13 +61,11 @@ function Register(props) {
     Ten_DK: name,
     Ten_Goi_Nho: name,
     Email: email,
-    Phone: phone
-  }
-  
+    Phone: phone,
+  };
+
   const create = async () => {
-    const res = await instance.post(
-      'employee/createUser', data
-    );
+    const res = await instance.post("employee/createUser", data);
     setList(res.data);
   };
 

@@ -4,6 +4,7 @@ import TodoAppContext from "../todoAppContext.js";
 import { Link } from "react-router-dom";
 import { data } from "../constant/temp-data.jsx";
 import { useNavigate } from "react-router-dom";
+import { instance } from "../utils";
 
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -13,6 +14,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 function CK(props) {
+  const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
   const [idBank, setIdBank] = useState("");
   const [name, setName] = useState("");
@@ -24,16 +26,19 @@ function CK(props) {
   const [messageError2, setMessageError2] = useState("");
   const [messageErrorBank, setMessageErrorBank] = useState("");
 
+  const getInfo = async () => {
+    const res = await instance.get(`users/info/${idBank}`);
+    if (res.data) setList(res.data);
+    else setList({});
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    let user = data.filter((item) => {
-      return item.stk === idBank;
-    });
-    if (user.length != 0) {
+    getInfo();
+    if (!(Object.keys(list).length === 0)) {
       // alert("dung roi");
-      setName(user[0].name);
-      setEmail(user[0].email);
-      setPhone(user[0].phone);
+      setName(list.DS_TK.Ten_DK);
+      setEmail(list.DS_TK.Email);
+      setPhone(list.DS_TK.Phone);
     } else {
       // alert("sai");
       setName("");
