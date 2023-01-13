@@ -13,6 +13,7 @@ function HisNN(props) {
     };
     getHis();
   }, []);
+
   let count = 0;
   return (
     <div className="container2">

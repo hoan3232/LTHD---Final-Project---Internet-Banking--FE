@@ -95,10 +95,19 @@ function ListCK(props) {
             id="alert-dialog-description"
             className="bg-dialog"
           >
-            <div> Tên người dùng : {userSelect?.name}</div>
-            <div> Số tài khoản : {userSelect?.stk}</div>
-            <div> Email : {userSelect?.email}</div>
-            <div> Số điện thoại: {userSelect?.phone}</div>
+            <div>
+              {" "}
+              Tên người dùng : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Id}
+            </div>
+            <div>
+              {" "}
+              Số tài khoản : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Ten_DK}
+            </div>
+            <div> Email : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Email}</div>
+            <div>
+              {" "}
+              Số điện thoại: {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Phone}
+            </div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
