@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { instance } from "../utils.js";
 
 function Recharge(props) {
   const [id, setId] = useState("");
@@ -40,8 +41,22 @@ function Recharge(props) {
       setMessageError2("");
       setMessageError3("");
       setMessageError4("");
-      setOpen(true);
+      console.log(money);
+      topup();
     }
+  };
+
+  const data = {
+    userId: "emp01",
+    Id: numbank,
+    Money: money
+  }
+
+  const topup = async () => {
+    const res = await instance.put(
+      'employee/topupAccount', data
+    );
+    setList(res.data);
   };
 
   return (
