@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { instance } from "../utils.js";
 
 function Register(props) {
   const [id, setId] = useState("");
@@ -48,8 +49,26 @@ function Register(props) {
       setMessageError3("");
       setMessageError4("");
       setMessageError5("");
-      setOpen(true);
+      create();
+      console.log(data);
     }
+  };
+
+  const data = {
+    userId: "emp01",
+    Id: id,
+    Pass: pass,
+    Ten_DK: name,
+    Ten_Goi_Nho: name,
+    Email: email,
+    Phone: phone
+  }
+  
+  const create = async () => {
+    const res = await instance.post(
+      'employee/createUser', data
+    );
+    setList(res.data);
   };
 
   return (
