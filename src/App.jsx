@@ -20,12 +20,18 @@ import Recharge from "./employee/Recharge.jsx";
 import ReHistory from "./employee/ReHistory.jsx";
 import Administrator from "./administrator/Administrator";
 import ListEmployee from "./administrator/ListEmployee";
+import LoginEmployee from "./views/LoginEmployee";
+import LoginAdmin from "./views/LoginAdmin";
+import SubmitEmail from "./views/SubmitEmail";
+import OTP from "./views/OTP";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/loginemployee" element={<LoginEmployee />} />
+        <Route path="/loginadmin" element={<LoginAdmin />} />
         <Route path="/changepass" element={<Changepass />} />
         <Route
           path="/"
@@ -45,6 +51,8 @@ function App() {
         <Route path="/rehistory" element={<ReHistory />} />
         <Route path="/administrator" element={<Administrator />} />
         <Route path="/listemployee" element={<ListEmployee />} />
+        <Route path="/submitemail" element={<SubmitEmail />} />
+        <Route path="/otp" element={<OTP />} />
       </Routes>
     </BrowserRouter>
     // <BrowserRouter>
