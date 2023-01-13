@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import TodoAppContext from "../todoAppContext.js";
 import { data } from "../constant/temp-data.jsx";
 import ListCK from "./ListCK.jsx";
 import ListNN from "./ListNN.jsx";
 import ListBN from "./ListBN.jsx";
+import reducer, { initializer } from "../todoAppReducer.js";
 
 function List(props) {
   //   const { store } = useContext(TodoAppContext);
   const [option, setOption] = useState("listtransfer");
-
   const handleChange = (value) => {
     setOption(value);
   };

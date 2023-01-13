@@ -15,8 +15,6 @@ export default function Login(props) {
   } = useForm();
 
   const onSubmit = async function (data) {
-    console.log(data);
-
     try {
       const res = await instance.post("/auth", data);
       console.log(res);

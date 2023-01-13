@@ -12,8 +12,9 @@ function Todo() {
 
   useEffect(function () {
     async function loadTasks() {
-      const userId = 1;
-      const res = await instance.get(`tasks/${userId}`);
+      const res = await instance.get(
+        `users/savedList/${localStorage.todoApp_userSTK}`
+      );
       dispatch({
         type: "init",
         payload: {

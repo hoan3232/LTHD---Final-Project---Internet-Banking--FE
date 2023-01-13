@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { data } from "../constant/temp-data.jsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import TodoAppContext from "../todoAppContext.js";
+import reducer, { initializer } from "../todoAppReducer.js";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,7 +12,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 function ListCK(props) {
-  // const { store } = useContext(TodoAppContext);
+  const { store } = useContext(TodoAppContext);
   const [userSelect, setUserSelect] = useState();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -38,7 +39,8 @@ function ListCK(props) {
   useEffect(() => {
     console.log("data", userSelect);
   }, [userSelect]);
-
+  let count = 0;
+  console.log(store.items);
   return (
     <div>
       <div className="option flex">
@@ -65,13 +67,13 @@ function ListCK(props) {
             <th>Ngân hàng</th>
             <th></th>
           </tr>
-          {data.map((val, key) => {
+          {store.items.map((val, key) => {
             return (
               <tr key={key}>
-                <td>{val.id}</td>
-                <td>{val.stk}</td>
-                <td>{val.name}</td>
-                <td>{val.bank}</td>
+                <td>{++count}</td>
+                <td>{val.Id2}</td>
+                <td>{val.TenGN}</td>
+                <td>{"HTD"}</td>
                 <td>
                   <button onClick={() => handleInfo(val)}>Chi tiết</button>
                 </td>
