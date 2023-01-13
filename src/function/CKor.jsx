@@ -83,14 +83,14 @@ function CKor(props) {
     setOpen(false);
     navigate(`/`);
   };
-
+  console.log(user);
   useEffect(() => {
-    if (user) {
-      setName(user?.name);
-      setEmail(user?.email);
-      setPhone(user?.phone);
-      setIdBank(user?.stk);
-      setNameBank(user?.bank);
+    if (!(Object.keys(user).length === 0)) {
+      setName(user.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Ten_DK);
+      setEmail(user.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Email);
+      setPhone(user.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Phone);
+      setIdBank(user.TK_TT_DS_GN_Id2ToTK_TT.STK);
+      setNameBank(user.NganHang);
     }
   }, [user]);
 

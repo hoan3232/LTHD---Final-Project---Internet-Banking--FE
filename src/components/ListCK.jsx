@@ -73,7 +73,7 @@ function ListCK(props) {
                 <td>{++count}</td>
                 <td>{val.Id2}</td>
                 <td>{val.TenGN}</td>
-                <td>{"HTD"}</td>
+                <td>{val.NganHang}</td>
                 <td>
                   <button onClick={() => handleInfo(val)}>Chi tiết</button>
                 </td>
