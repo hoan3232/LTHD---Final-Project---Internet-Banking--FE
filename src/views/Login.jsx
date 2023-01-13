@@ -84,6 +84,9 @@ export default function Login(props) {
         <Link to="/employee">
           <div className="changepass">Employee</div>
         </Link>
+        <Link to="/administrator">
+          <div className="changepass">Administrator</div>
+        </Link>
       </form>
     </div>
   );

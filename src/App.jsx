@@ -18,6 +18,8 @@ import Employee from "../src/employee/Employee.jsx";
 import Register from "./employee/Register.jsx";
 import Recharge from "./employee/Recharge.jsx";
 import ReHistory from "./employee/ReHistory.jsx";
+import Administrator from "./administrator/Administrator";
+import ListEmployee from "./administrator/ListEmployee";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/recharge" element={<Recharge />} />
         <Route path="/rehistory" element={<ReHistory />} />
+        <Route path="/administrator" element={<Administrator />} />
+        <Route path="/listemployee" element={<ListEmployee />} />
       </Routes>
     </BrowserRouter>
     // <BrowserRouter>
