@@ -17,7 +17,6 @@ export default function Login(props) {
   const onSubmit = async function (data) {
     try {
       const res = await instance.post("/auth", data);
-      console.log(res);
       if (res.data.authenticated) {
         // console.log(res.data.accessToken);
         localStorage.todoApp_accessToken = res.data.accessToken;
@@ -26,7 +25,7 @@ export default function Login(props) {
         localStorage.todoApp_userId = obj.userId;
         localStorage.todoApp_userSTK = obj.stk;
         localStorage.todoApp_userName = obj.Name;
-        localStorage.todoApp_userSodu = obj.Sodu;
+        localStorage.todoApp_userSodu = obj.SoDu;
 
         // console.log(location.state);
         const retUrl = location.state?.from?.pathname || "/";

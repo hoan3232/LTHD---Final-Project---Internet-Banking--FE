@@ -30,16 +30,19 @@ const AuthInfo = () => {
   };
 
   return (
-    <div className="Infor">
-      <div className="nav">
-        <div>Số tài khoản: {localStorage.todoApp_userSTK}</div>
-        <div>Tên người dùng: {localStorage.todoApp_userName}</div>
-        <div>Số dư khả dụng: {localStorage.todoApp_userSodu}</div>
+    console.log("1: " + localStorage.todoApp_userSodu),
+    (
+      <div className="Infor">
+        <div className="nav">
+          <div>Số tài khoản: {localStorage.todoApp_userSTK}</div>
+          <div>Tên người dùng: {localStorage.todoApp_userName}</div>
+          <div>Số dư khả dụng: {localStorage.todoApp_userSodu}</div>
+        </div>
+        <button type="button" onClick={btnSignOut_Clicked}>
+          Sign out
+        </button>
       </div>
-      <button type="button" onClick={btnSignOut_Clicked}>
-        Sign out
-      </button>
-    </div>
+    )
   );
 };
 
