@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { instance, parseJwt } from "../utils.js";
-export default function LoginEmployee(props) {
+export default function LoginAdmin(props) {
   const nagivate = useNavigate();
   const location = useLocation();
 
@@ -16,7 +16,7 @@ export default function LoginEmployee(props) {
 
   const onSubmit = async function (data) {
     try {
-      const res = await instance.post("/auth", data);
+      const res = await instance.post("/auth/adm", data);
       if (res.data.authenticated) {
         // console.log(res.data.accessToken);
         localStorage.todoApp_accessToken = res.data.accessToken;
