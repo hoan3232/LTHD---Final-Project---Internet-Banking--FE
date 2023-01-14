@@ -3,10 +3,14 @@ import { instance } from "../utils";
 export default function ReHisCK(props) {
   const [list, setList] = useState([]);
 
+  const data = {
+    userId: "emp01"
+  }
+
   useEffect(() => {
     const getHis = async () => {
-      const res = await instance.get(
-        `users/history/${localStorage.todoApp_userSTK}`
+      const res = await instance.post(
+        `employee/all`, data
       );
       setList(res.data);
     };
@@ -14,14 +18,14 @@ export default function ReHisCK(props) {
   }, []);
   let count = 0;
   return (
-    <div className="container2">
+    <div className="container3">
       <div className="table">
         <table>
           <tr>
             <th>STT</th>
             <th>Ngày giờ</th>
-            <th>Số tài khoản</th>
-            <th>Tên người nhận</th>
+            <th>STK Người Gửi</th>
+            <th>STK Người Nhận</th>
             <th>Số tiền</th>
             <th>Nội dung</th>
             <th> </th>
@@ -46,13 +50,10 @@ export default function ReHisCK(props) {
               <tr key={key}>
                 <td>{++count}</td>
                 <td>{dateString}</td>
+                <td>{val.Ma_Ng_Gui}</td>
                 <td>{val.Ma_Ng_Nhan}</td>
-                <td>{val.TK_TT_DS_CK_Ma_Ng_GuiToTK_TT.DS_TK.Ten_DK}</td>
                 <td>{val.So_Tien}</td>
                 <td>{val.Noi_Dung}</td>
-                <td>
-                  <button onClick={() => handleInfo(val)}>Chi tiết</button>
-                </td>
               </tr>
             );
           })}
