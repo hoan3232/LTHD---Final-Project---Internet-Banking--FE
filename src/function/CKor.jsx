@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import { data } from "../constant/temp-data.jsx";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import md5 from "md5";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
+import { instance2 } from "../utils2.js";
+import axios from "axios";
 function CKor(props) {
   // const { store } = useContext(TodoAppContext);
   const { state } = useLocation();
@@ -30,22 +31,41 @@ function CKor(props) {
   const [messageErrorBank1, setMessageErrorBank1] = useState("");
   const [messageErrorBank2, setMessageErrorBank2] = useState("");
 
+  const time = Date.now();
+  const hmac = md5(
+    `bankCode=HDT&time=${time}&key=AUTHENTICATION_SERVER_SECRET_KEY_SWEN`
+  );
+  const getinfo = async () => {
+    const res = await axios.get(
+      `http://143.198.218.103:3030/Api/GetInformationAccount`,
+      {
+        params: {
+          bankCode: "HDT",
+          time: time,
+          hmac: hmac,
+          accountNumber: idBank,
+        },
+      }
+    );
+    return { status: res.status, data: res.data };
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    let user = data.filter((item) => {
-      return item.stk === idBank && item.bank === nameBank;
+    getinfo().then((value) => {
+      if (value.status === 200) {
+        console.log(value);
+        // alert("dung roi");
+        setName(value.data.data.name);
+        setEmail(value.data.data.bank);
+        setPhone(value.data.data.number);
+      } else {
+        console.log(value);
+        ///asalert("sai");
+        setName("");
+        setEmail("");
+        setPhone("");
+      }
     });
-    if (user.length != 0) {
-      // alert("dung roi");
-      setName(user[0].name);
-      setEmail(user[0].email);
-      setPhone(user[0].phone);
-    } else {
-      // alert("sai");
-      setName("");
-      setEmail("");
-      setPhone("");
-    }
   };
   const handleSubmitBanking = (event) => {
     if (!idBank) {
@@ -96,7 +116,7 @@ function CKor(props) {
 
   return (
     <div className="container2">
-      <h2>Chuyển khoản liên ngân hàng</h2>
+      <h2>Chuyển khoản</h2>
       <form onSubmit={handleSubmit}>
         <div className="fg">
           <input
@@ -105,12 +125,12 @@ function CKor(props) {
             onChange={(event) => setIdBank(event.target.value)}
             placeholder="Số tài khoản"
           />
-          <input
+          {/* <input
             type="text"
             placeholder="Tên ngân hàng"
             value={nameBank}
             onChange={(event) => setNameBank(event.target.value)}
-          />
+          /> */}
           <button type="submit-ck">Xác nhận</button>
         </div>
         <div className="fg">
@@ -125,9 +145,14 @@ function CKor(props) {
       <h3 className="info-ck">Thông tin người nhận</h3>
       <form onSubmit={handleSubmitBanking}>
         <div className="form-ck">
-          <input type="text" placeholder="Tên" value={name} disabled />
-          <input type="text" placeholder="Email" value={email} disabled />
-          <input type="text" placeholder="SĐT" value={phone} disabled />
+          <input type="text" placeholder="STK" value={name} disabled />
+          <input type="text" placeholder="Tên" value={email} disabled />
+          <input
+            type="text"
+            placeholder="Tên ngân hàng"
+            value={phone}
+            disabled
+          />
           <h3 className="info-ck">Số tiền cần chuyển</h3>
           <div>
             <input
