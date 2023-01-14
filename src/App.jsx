@@ -25,7 +25,8 @@ import LoginAdmin from "./views/LoginAdmin";
 import SubmitEmail from "./views/SubmitEmail";
 import OTP from "./views/OTP";
 import SubmitEmailCK from "./views/SubmitEmailCK";
-import OTPCK from "./views/OTPCK";
+import OTPCK from "./views/OTPCK"; 
+import ReHisto from "./administrator/ReHisto.jsx";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path="/otp" element={<OTP />} />
         <Route path="/submitemailck" element={<SubmitEmailCK />} />
         <Route path="/otpck" element={<OTPCK />} />
+        <Route path="/rehisto" element={<ReHisto />} />
       </Routes>
     </BrowserRouter>
     // <BrowserRouter>
