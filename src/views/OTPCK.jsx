@@ -22,7 +22,7 @@ function OTP(props) {
       otp: otp,
       email: user,
     };
-    const res = await instance.post(`otp/verifyOTP`, data);
+    const res = await instance.post(`otpck/verifyOTP`, data);
     return res.status;
   };
 
@@ -30,7 +30,7 @@ function OTP(props) {
     verifyOTP()
       .then((value) => {
         if (value === 201)
-          navigate("/changepass", {
+          navigate("/", {
             state: {
               user: user,
             },
@@ -66,7 +66,7 @@ function OTP(props) {
             Xác nhận
           </button>
         </div>
-        <Link to="/submitemail">
+        <Link to="/submitemailck">
           <button type="button1-ck">Back</button>
         </Link>
       </form>

@@ -44,7 +44,7 @@ function ListCK(props) {
   return (
     <div>
       <div className="option flex">
-        <Link to="/transfer">
+        <Link to="/submitemailck">
           <button type="button">Chuyển khoản</button>
         </Link>
         <div onClick={handleNavi}>
