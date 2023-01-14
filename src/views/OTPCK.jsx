@@ -29,11 +29,25 @@ function OTPCK(props) {
     return res.status;
   };
 
+  const createTrans = async () => {
+    const date = new Date(Date.now());
+    const res = await instance.post(`users/createTrans`, {
+      Ngay_Gio: date,
+      Ma_Ng_Gui: localStorage.todoApp_userSTK,
+      Ma_Ng_Nhan: user,
+      So_Tien: parseFloat(amount),
+      Noi_Dung: message,
+      Hinh_Thuc_TT: true,
+    });
+    return res.status;
+  };
   const handleSubmit = () => {
     verifyOTP()
       .then((value) => {
         if (value === 201) {
-          navigate("/");
+          createTrans().then((value) => {
+            navigate("/");
+          });
         } else {
           alert("Invalid OTP, please check your OTP code again.");
         }
