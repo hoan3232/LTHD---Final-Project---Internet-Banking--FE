@@ -57,7 +57,7 @@ export default function HisCK(props) {
                 <td>{++count}</td>
                 <td>{dateString}</td>
                 <td>{val.Ma_Ng_Nhan}</td>
-                <td>{val.TK_TT_DS_CK_Ma_Ng_GuiToTK_TT.DS_TK.Ten_DK}</td>
+                <td>{val.TK_TT_DS_CK_Ma_Ng_NhanToTK_TT.DS_TK.Ten_DK}</td>
                 <td>{val.So_Tien}</td>
                 <td>{val.Noi_Dung}</td>
                 <td>

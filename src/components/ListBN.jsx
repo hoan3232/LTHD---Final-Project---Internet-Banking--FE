@@ -3,14 +3,27 @@ import { instance } from "../utils";
 
 function ListBN(props) {
   const [list, setList] = useState([]);
+const handleInfo = async (val) => {
+    await instance.put(`users/payment`, {
+      Id2: localStorage.todoApp_userSTK,
+      Id1: val.Ma_Ng_Gui,
+      amount: val.So_No,
+    });
+    console.log(localStorage.todoApp_userSTK);
+    console.log(val.Ma_Ng_Gui);
+    const res = await instance.get(
+      `users/debt/${localStorage.todoApp_userSTK}`
+    );
+    setList(res.data);
+  };
   useEffect(() => {
-    const getDebt = async () => {
+    const getNN = async () => {
       const res = await instance.get(
         `users/debt/${localStorage.todoApp_userSTK}`
       );
       setList(res.data);
     };
-    getDebt();
+    getNN();
   }, []);
   let count = 0;
 
@@ -47,13 +60,17 @@ function ListBN(props) {
               <tr key={key}>
                 <td>{++count}</td>
                 <td>{dateString}</td>
-                <td>{val.Ma_Ng_Nhan}</td>
+                <td>{val.Ma_Ng_Gui}</td>
                 <td>{val.TK_TT_DS_NN_Ma_Ng_GuiToTK_TT.DS_TK.Ten_DK}</td>
                 <td>{val.So_No}</td>
                 <td>{val.Noi_Dung}</td>
-                <td>
-                  <button onClick={() => handleInfo(val)}>Chi tiết</button>
-                </td>
+                {val.Trang_Thai ? (
+                  <td>{"Đã trả"}</td>
+                ) : (
+                  <td>
+                    <button onClick={() => handleInfo(val)}>Trả nợ</button>
+                  </td>
+                )}
               </tr>
             );
           })}
