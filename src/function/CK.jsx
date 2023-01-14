@@ -90,6 +90,32 @@ function CK(props) {
       });
     }
   };
+
+  const handleSave = (event) => {
+    if (!idBank) {
+      setMessageErrorBank("Hãy nhập số tài khoản");
+    } else {
+      setMessageErrorBank("");
+    }
+    if (!money) {
+      setMessageError1("Hãy nhập số tiền cần chuyển");
+    } else {
+      setMessageError1("");
+    }
+    if (!message) {
+      setMessageError2("Hãy nhập nội dung muốn gửi");
+    } else {
+      setMessageError2("");
+    }
+    event.preventDefault();
+    if (idBank && money && message && name && email && phone) {
+      setMessageErrorBank("");
+      setMessageError1("");
+      setMessageError2("");
+      setOpen(true);
+    }
+  };
+
   const navigate = useNavigate();
 
   const handleCloseAndBack = () => {
@@ -147,6 +173,9 @@ function CK(props) {
         </div>
         <button type="button1-ck" onSubmit={handleSubmitBanking}>
           Chuyển khoản
+        </button>
+        <button type="button1-ck" onSubmit={handleSave}>
+          Lưu thông tin
         </button>
         <Link to="/">
           <button type="button1-ck">Back</button>
