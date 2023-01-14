@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import TodoAppContext from "../todoAppContext.js";
 import { data } from "../constant/temp-data.jsx";
 import { Link } from "react-router-dom";
-import HisCK from "../components/HisCK.jsx";
-import HisNT from "../components/HisNT.jsx";
+import ReHisCK from "../employee/ReHisCK.jsx";
+import ReHisNT from "../employee/ReHisNT.jsx";
 
 function ReHistory(props) {
   //   const { store } = useContext(TodoAppContext);
-  const [option, setOption] = useState("histransfer");
+  const [option, setOption] = useState("rehistransfer");
 
   const handleChange = (value) => {
     setOption(value);
@@ -23,15 +23,15 @@ function ReHistory(props) {
           value={option}
           onChange={(e) => handleChange(e.target.value)}
         >
-          <option value="hisreceive">Lịch sử nhận tiền</option>
-          <option value="histransfer" selected>
+          <option value="rehisreceive">Lịch sử nhận tiền</option>
+          <option value="rehistransfer" selected>
             Lịch sử chuyển khoản
           </option>
         </select>
       </div>
 
-      {option === "histransfer" && <HisCK />}
-      {option === "hisreceive" && <HisNT />}
+      {option === "rehistransfer" && <ReHisCK />}
+      {option === "rehisreceive" && <ReHisNT />}
 
       <Link to="/employee">
         <button type="button1-ck">Back</button>
