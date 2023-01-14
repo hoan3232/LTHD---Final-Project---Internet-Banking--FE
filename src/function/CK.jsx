@@ -11,7 +11,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
+import { instance } from "../utils";
 function CK(props) {
   const [open, setOpen] = useState(false);
   const [idBank, setIdBank] = useState("");
@@ -26,20 +26,25 @@ function CK(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let user = data.filter((item) => {
-      return item.stk === idBank;
+    const getinfo = async () => {
+      const res = await instance.get(`users/info/${idBank}`);
+      return { status: res.status, data: res.data };
+    };
+
+    getinfo().then((value) => {
+      if (value.status === 201) {
+        // alert("dung roi");
+        setName(value.data.DS_TK.Ten_DK);
+        setEmail(value.data.DS_TK.Email);
+        setPhone(value.data.DS_TK.Phone);
+      } else {
+        console.log(value);
+        ///asalert("sai");
+        setName("");
+        setEmail("");
+        setPhone("");
+      }
     });
-    if (user.length != 0) {
-      // alert("dung roi");
-      setName(user[0].name);
-      setEmail(user[0].email);
-      setPhone(user[0].phone);
-    } else {
-      // alert("sai");
-      setName("");
-      setEmail("");
-      setPhone("");
-    }
   };
   const handleClose = () => {
     setOpen(false);
