@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { instance } from "../utils";
+
 export default function ReHisCK(props) {
   const [list, setList] = useState([]);
+  const [term, setTerm] = useState("");
+
+  const txtTerm_Changed = function (e) {
+    setTerm(e.target.value);
+  };
 
   const data = {
-    userId: "emp01"
-  }
+    userId: "emp01",
+  };
 
   useEffect(() => {
     const getHis = async () => {
-      const res = await instance.post(
-        `employee/all`, data
-      );
+      const res = await instance.post(`employee/all`, data);
       setList(res.data);
     };
     getHis();
@@ -19,6 +23,15 @@ export default function ReHisCK(props) {
   let count = 0;
   return (
     <div className="container3">
+      <div className="bodysearch">
+        <input
+          type="text"
+          value={term}
+          onChange={txtTerm_Changed}
+          // onKeyUp={txtTerm_KeyUp}
+        />
+        <button type="button">Tìm kiếm</button>
+      </div>
       <div className="table">
         <table>
           <tr>

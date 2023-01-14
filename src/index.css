@@ -15,18 +15,16 @@ body {
   margin: 0 auto;
 }
 
-
 .container3 {
   width: 1500px;
   margin: 0 auto;
 }
 
-
 .g-recaptcha {
   transform: scale(1.2);
   transform-origin: 0 0;
 }
- 
+
 h3 {
   color: #333;
   font-weight: bold;
@@ -172,17 +170,18 @@ li.done {
 
 .bodysearch {
   display: flex;
+  margin-top: 10px;
 }
 
 .bodysearch button {
-  margin-left: 80px;
+  margin-left: 10px;
   margin-top: 5px;
   height: 30px;
   font-weight: 700;
 }
 
 .bodysearch button:hover {
-  background: blue;
+  background: #008cba;
   color: white;
 }
 
