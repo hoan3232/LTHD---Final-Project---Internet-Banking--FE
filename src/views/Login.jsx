@@ -2,20 +2,34 @@ import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-
+import ReCAPTCHA from "react-google-recaptcha";
 import { instance, parseJwt } from "../utils.js";
 
 export default function Login(props) {
+  let recaptchaInstance;
+
+  // create a reset function
+  const resetRecaptcha = () => {
+    recaptchaInstance.reset();
+  };
   const nagivate = useNavigate();
   const location = useLocation();
+  const [check, setCheck] = useState(false);
 
+  const handleOnChange = () => {
+    setCheck(true);
+  };
   const {
     register,
     handleSubmit,
+
     watch,
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    recaptchaInstance.reset();
+  }, []);
   const onSubmit = async function (data) {
     try {
       const res = await instance.post("/auth", data);
@@ -74,9 +88,19 @@ export default function Login(props) {
         <div className="fg">
           {errors.password && <span>Password is incorrect</span>}
         </div>
-        <div className="fg mt-3">
-          <button type="submit">LOGIN</button>
+        <div className="g-recaptcha ">
+          <ReCAPTCHA
+            ref={(e) => (recaptchaInstance = e)}
+            sitekey={"6LceovcjAAAAAI_t_sFd-jsn8CEVyxscgq2hiU5-"}
+            onChange={handleOnChange}
+          />
         </div>
+        <div className="fg mt-3">
+          <button type="submit" disabled={!check}>
+            LOGIN
+          </button>
+        </div>
+
         <Link to="/submitemail">
           <div className="changepass">Change Password</div>
         </Link>

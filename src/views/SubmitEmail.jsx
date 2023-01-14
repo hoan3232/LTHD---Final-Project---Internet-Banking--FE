@@ -2,18 +2,31 @@ import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-
 import { instance, parseJwt } from "../utils.js";
 
 function SubmitEmail(props) {
   const [email, setEmail] = useState();
+  const [result, setResult] = useState();
   const navigate = useNavigate();
   const handleInfo = (val) => {
     setEmail(val);
   };
-  const handleSubmit = () => {
-    navigate("/otp", { state: { user: email } });
-    console.log(email);
+  const sendOTP = async () => {
+    const res = await instance.post(`otp/sendOTP/${email}`);
+    // setResult(res.data.hash);
+    // console.log(res.data.hash);
+    // console.log(result);
+    return res.data.hash;
+  };
+  const handleSubmit = async () => {
+    sendOTP()
+      .then((value) => {
+        navigate("/otp", { state: { user: email, hash: value } });
+        console.log("hi");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -29,7 +42,7 @@ function SubmitEmail(props) {
           />
         </div>
         <div className="fg mt-3">
-          <button type="submit" onClick={handleSubmit}>
+          <button type="button" onClick={handleSubmit}>
             Xác nhận
           </button>
         </div>
