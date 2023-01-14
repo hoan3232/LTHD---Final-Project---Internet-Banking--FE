@@ -15,28 +15,28 @@ function Recharge(props) {
   const [messageError4, setMessageError4] = useState("");
 
   const handleSubmitBanking = (event) => {
-    if (!id) {
-      setMessageError1("Hãy nhập tên đăng nhập");
-    } else {
-      setMessageError1("");
-    }
-    if (!numbank) {
-      setMessageError2("Hãy nhập số tài khoản");
-    } else {
-      setMessageError2("");
-    }
-    if (!name) {
-      setMessageError3("Hãy nhập tên người dùng");
-    } else {
-      setMessageError3("");
-    }
-    if (!money) {
-      setMessageError4("Hãy nhập số tiền cần nạp");
-    } else {
-      setMessageError4("");
-    }
+    // // if (!id) {
+    // //   setMessageError1("Hãy nhập tên đăng nhập");
+    // // } else {
+    // //   setMessageError1("");
+    // // }
+    // if (!numbank) {
+    //   setMessageError2("Hãy nhập số tài khoản");
+    // } else {
+    //   setMessageError2("");
+    // }
+    // if (!name) {
+    //   setMessageError3("Hãy nhập tên người dùng");
+    // } else {
+    //   setMessageError3("");
+    // }
+    // if (!money) {
+    //   setMessageError4("Hãy nhập số tiền cần nạp");
+    // } else {
+    //   setMessageError4("");
+    // }
     event.preventDefault();
-    if (id && numbank && name && money) {
+    if (numbank && money) {
       setMessageError1("");
       setMessageError2("");
       setMessageError3("");
@@ -56,6 +56,7 @@ function Recharge(props) {
     const res = await instance.put(
       'employee/topupAccount', data
     );
+    alert("Nạp tiền thành công!");
     setList(res.data);
   };
 
@@ -64,7 +65,7 @@ function Recharge(props) {
       <h2>Nạp tiền vào tài khoản</h2>
       <form onSubmit={handleSubmitBanking}>
         <div className="form-ck">
-          <div className="fg">
+          {/* <div className="fg">
             <input
               type="text"
               placeholder="Tên đăng nhập"
@@ -77,7 +78,7 @@ function Recharge(props) {
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
-          </div>
+          </div> */}
           <div className="fg">
             <div className="msgerr">
               {messageError1 && <div>{messageError1}</div>}

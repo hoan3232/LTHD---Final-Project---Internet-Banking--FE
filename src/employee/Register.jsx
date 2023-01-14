@@ -62,10 +62,13 @@ function Register(props) {
     Ten_Goi_Nho: name,
     Email: email,
     Phone: phone,
+    STK: "",
+    Ngan_Hang: "HTD",
   };
 
   const create = async () => {
     const res = await instance.post("employee/createUser", data);
+    alert("Tạo tài khoản người dùng và tài khoản ibanking thành công");
     setList(res.data);
   };
 

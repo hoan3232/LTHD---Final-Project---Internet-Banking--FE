@@ -24,7 +24,7 @@ function ListCK(props) {
     setUserSelect(val);
   };
   const handleBank = () => {
-    navigate("/transferorder", { state: { user: userSelect } });
+    navigate("/transfer", { state: { user: userSelect } });
   };
   const handleDebt = () => {
     navigate("/debtreminder", { state: { user: userSelect } });
@@ -35,6 +35,9 @@ function ListCK(props) {
   const handleNavi2 = () => {
     navigate("/debtreminder", { state: { user: {} } });
   };
+  const handleNavi3 = () => {
+    navigate("/transfer", { state: { user: {} } });
+  };
 
   useEffect(() => {
     console.log("data", userSelect);
@@ -44,9 +47,9 @@ function ListCK(props) {
   return (
     <div>
       <div className="option flex">
-        <Link to="/transfer">
+        <div onClick={handleNavi3}>
           <button type="button">Chuyển khoản</button>
-        </Link>
+        </div>
         <div onClick={handleNavi}>
           <button type="button">Chuyển khoản liên ngân hàng</button>
         </div>
