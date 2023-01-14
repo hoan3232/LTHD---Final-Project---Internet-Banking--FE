@@ -8,15 +8,44 @@ import { instance, parseJwt } from "../utils.js";
 
 function OTP(props) {
   const [otp, setOtp] = useState();
+  const [result, setResult] = useState("");
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { user } = state;
+  const { user, hash } = state;
   const handleInfo = (val) => {
     setOtp(val);
   };
+
+  const verifyOTP = async () => {
+    const data = {
+      hash: hash,
+      otp: otp,
+      email: user,
+    };
+    const res = await instance.post(`otp/verifyOTP`, data);
+    return res.status;
+  };
   const handleSubmit = () => {
-    navigate("/login");
-    console.log(user);
+    verifyOTP()
+      .then((value) => {
+        if (value === 201)
+          navigate("/changepass", {
+            state: {
+              user: user,
+            },
+          });
+        else {
+          alert("Invalid OTP, please check your OTP code again.");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    // if (res.status === 201) navigate("/changepass");
+    // else {
+    // }
+    // console.log(result);
+    // navigate("/changepass");
   };
 
   return (
@@ -32,7 +61,7 @@ function OTP(props) {
           />
         </div>
         <div className="fg mt-3">
-          <button type="submit" onClick={handleSubmit}>
+          <button type="button" onClick={handleSubmit}>
             Xác nhận
           </button>
         </div>
