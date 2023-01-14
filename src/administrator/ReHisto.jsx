@@ -112,7 +112,7 @@ export default function ReHisto(props) {
                 <td>{dateString}</td>
                 <td>{val.Ma_Ng_Gui}</td>
                 <td>{val.Ma_Ng_Nhan}</td>
-                <td>{val.TK_TT_DS_CK_Ma_Ng_NhanToTK_TT.Ngan_Hang}</td>
+                <td>{val.NganHang}</td>
                 <td>{val.So_Tien}</td>
               </tr>
             );
