@@ -42,6 +42,7 @@ export default function Login(props) {
         localStorage.todoApp_userSTK = obj.stk;
         localStorage.todoApp_userName = obj.Name;
         localStorage.todoApp_userSodu = obj.SoDu;
+        localStorage.todoApp_userEmail = obj.Email;
 
         // console.log(location.state);
         const retUrl = location.state?.from?.pathname || "/";

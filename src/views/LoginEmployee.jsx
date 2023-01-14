@@ -1,12 +1,18 @@
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import React, { useEffect, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { instance, parseJwt } from "../utils.js";
+
 export default function LoginEmployee(props) {
   const nagivate = useNavigate();
   const location = useLocation();
+  const [check, setCheck] = useState(false);
 
+  const handleOnChange = () => {
+    setCheck(true);
+  };
   const {
     register,
     handleSubmit,
@@ -16,7 +22,7 @@ export default function LoginEmployee(props) {
 
   const onSubmit = async function (data) {
     try {
-      const res = await instance.post("/auth", data);
+      const res = await instance.post("/auth/emp", data);
       if (res.data.authenticated) {
         // console.log(res.data.accessToken);
         localStorage.todoApp_accessToken = res.data.accessToken;
@@ -72,8 +78,16 @@ export default function LoginEmployee(props) {
         <div className="fg">
           {errors.password && <span>Password is incorrect</span>}
         </div>
+        <div className="g-recaptcha ">
+          <ReCAPTCHA
+            sitekey={"6LceovcjAAAAAI_t_sFd-jsn8CEVyxscgq2hiU5-"}
+            onChange={handleOnChange}
+          />
+        </div>
         <div className="fg mt-3">
-          <button type="submit">LOGIN</button>
+          <button type="submit" disabled={!check}>
+            LOGIN
+          </button>
         </div>
       </form>
     </div>

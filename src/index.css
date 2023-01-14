@@ -317,6 +317,35 @@ button[type="button1-ck"] {
 .changepass {
   margin-top: 10px;
 }
+
+.pơpup {
+  width: 1800px;
+}
+
+input[type="text1"],
+input[type="number1"],
+input[type="password1"] {
+  display: flex;
+  width: 400px;
+  font-size: 11pt;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  padding: 10px 16px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #c5cee0;
+  border-radius: 10px;
+}
+
+input[type="text1"]:focus,
+input[type="number1"]:focus,
+input[type="password1"]:focus {
+  box-shadow: 0 0 7px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;

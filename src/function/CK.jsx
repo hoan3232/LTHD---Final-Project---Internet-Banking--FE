@@ -11,7 +11,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
+import { instance } from "../utils";
 function CK(props) {
   const [open, setOpen] = useState(false);
   const [idBank, setIdBank] = useState("");
@@ -23,23 +23,44 @@ function CK(props) {
   const [messageError1, setMessageError1] = useState("");
   const [messageError2, setMessageError2] = useState("");
   const [messageErrorBank, setMessageErrorBank] = useState("");
+  const getOTP = async () => {
+    const res = await instance.post(
+      `otp/sendOTP/${localStorage.todoApp_userEmail}`
+    );
+    return { status: res.status, data: res.data };
+  };
+  const createContact = async () => {
+    const data = {
+      Id1: localStorage.todoApp_userSTK,
+      Id2: idBank,
+      TenGN: "",
+    };
+
+    const res = await instance.post(`users/createContact`, data);
+    return res.status;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let user = data.filter((item) => {
-      return item.stk === idBank;
+    const getinfo = async () => {
+      const res = await instance.get(`users/info/${idBank}`);
+      return { status: res.status, data: res.data };
+    };
+
+    getinfo().then((value) => {
+      if (value.status === 201) {
+        // alert("dung roi");
+        setName(value.data.DS_TK.Ten_DK);
+        setEmail(value.data.DS_TK.Email);
+        setPhone(value.data.DS_TK.Phone);
+      } else {
+        console.log(value);
+        ///asalert("sai");
+        setName("");
+        setEmail("");
+        setPhone("");
+      }
     });
-    if (user.length != 0) {
-      // alert("dung roi");
-      setName(user[0].name);
-      setEmail(user[0].email);
-      setPhone(user[0].phone);
-    } else {
-      // alert("sai");
-      setName("");
-      setEmail("");
-      setPhone("");
-    }
   };
   const handleClose = () => {
     setOpen(false);
@@ -66,13 +87,52 @@ function CK(props) {
       setMessageError1("");
       setMessageError2("");
       setOpen(true);
+      getOTP().then((value) => {
+        {
+          navigate("/otpck", {
+            state: {
+              hash: value.data.hash,
+              user: idBank,
+              amount: money,
+              message: message,
+            },
+          });
+        }
+      });
     }
   };
+
+  const handleSave = (event) => {
+    if (!idBank) {
+      setMessageErrorBank("Hãy nhập số tài khoản");
+    } else {
+      setMessageErrorBank("");
+    }
+    if (!money) {
+      setMessageError1("Hãy nhập số tiền cần chuyển");
+    } else {
+      setMessageError1("");
+    }
+    if (!message) {
+      setMessageError2("Hãy nhập nội dung muốn gửi");
+    } else {
+      setMessageError2("");
+    }
+    event.preventDefault();
+    if (idBank && money && message && name && email && phone) {
+      setMessageErrorBank("");
+      setMessageError1("");
+      setMessageError2("");
+      createContact().then((value) => {
+        alert("Lưu thành công");
+      });
+    }
+  };
+
   const navigate = useNavigate();
 
   const handleCloseAndBack = () => {
     setOpen(false);
-    navigate(`/`);
   };
   useEffect(() => {
     console.log(messageError1, messageError2);
@@ -124,8 +184,11 @@ function CK(props) {
             </div>
           </div>
         </div>
-        <button type="button1-ck" onSubmit={handleSubmitBanking}>
+        <button type="button1-ck" onClick={handleSubmitBanking}>
           Chuyển khoản
+        </button>
+        <button type="button1-ck" onClick={handleSave}>
+          Lưu thông tin
         </button>
         <Link to="/">
           <button type="button1-ck">Back</button>

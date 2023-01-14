@@ -6,12 +6,12 @@ import React, { useEffect, useState } from "react";
 
 import { instance, parseJwt } from "../utils.js";
 
-function OTP(props) {
+function OTPCK(props) {
   const [otp, setOtp] = useState();
   const [result, setResult] = useState("");
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { user, hash } = state;
+  const { hash, user, amount, message } = state;
   const handleInfo = (val) => {
     setOtp(val);
   };
@@ -20,22 +20,35 @@ function OTP(props) {
     const data = {
       hash: hash,
       otp: otp,
-      email: user,
+      email: localStorage.todoApp_userEmail,
+      Id1: localStorage.todoApp_userSTK,
+      Id2: user,
+      amount: amount,
     };
-    const res = await instance.post(`otp/verifyOTP`, data);
+    const res = await instance.put(`users/transfer`, data);
     return res.status;
   };
 
+  const createTrans = async () => {
+    const date = new Date(Date.now());
+    const res = await instance.post(`users/createTrans`, {
+      Ngay_Gio: date,
+      Ma_Ng_Gui: localStorage.todoApp_userSTK,
+      Ma_Ng_Nhan: user,
+      So_Tien: parseFloat(amount),
+      Noi_Dung: message,
+      Hinh_Thuc_TT: true,
+    });
+    return res.status;
+  };
   const handleSubmit = () => {
     verifyOTP()
       .then((value) => {
-        if (value === 201)
-          navigate("/changepass", {
-            state: {
-              user: user,
-            },
+        if (value === 201) {
+          createTrans().then((value) => {
+            navigate("/");
           });
-        else {
+        } else {
           alert("Invalid OTP, please check your OTP code again.");
         }
       })
@@ -59,6 +72,7 @@ function OTP(props) {
             placeholder="OTP"
             value={otp}
             onChange={(event) => handleInfo(event.target.value)}
+            autoFocus
           />
         </div>
         <div className="fg mt-3">
@@ -66,11 +80,11 @@ function OTP(props) {
             Xác nhận
           </button>
         </div>
-        <Link to="/submitemail">
+        <Link to="/transfer">
           <button type="button1-ck">Back</button>
         </Link>
       </form>
     </div>
   );
 }
-export default OTP;
+export default OTPCK;
