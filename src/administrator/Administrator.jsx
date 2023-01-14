@@ -13,7 +13,7 @@ function Administrator() {
           <button type="submit">Danh sách nhân viên</button>
         </div>
       </Link>
-      <Link to="/recharge">
+      <Link to="/rehisto">
         <div className="fg mt-3">
           <button type="submit">Danh sách giao dịch</button>
         </div>
