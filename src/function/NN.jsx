@@ -54,6 +54,7 @@ function NN(props) {
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleSubmitBanking = (event) => {
     if (!idBank) {
       setMessageErrorBank("Hãy nhập số tài khoản");
@@ -75,6 +76,7 @@ function NN(props) {
       setMessageErrorBank("");
       setMessageError1("");
       setMessageError2("");
+      create();
       setOpen(true);
     }
   };
@@ -93,9 +95,24 @@ function NN(props) {
       setIdBank(user.TK_TT_DS_GN_Id2ToTK_TT.STK);
     }
   }, [user]);
-  //   useEffect(() => {
-  //     console.log(messageError1, messageError2);
-  //   }, [messageError1, messageError2]);
+
+  const date = new Date(Date.now());
+
+  const data = {
+    Ngay_Gio:  date,
+    Ma_Ng_Gui: localStorage.todoApp_userSTK,
+    Ma_Ng_Nhan: idBank,
+    So_No: parseFloat(money),
+    Noi_Dung: message
+  }
+
+  const create = async () => {
+    const res = await instance.post(
+      'users/createNotice', data
+    );
+    setList(res.data);
+  };
+  
 
   return (
     <div className="container2">
