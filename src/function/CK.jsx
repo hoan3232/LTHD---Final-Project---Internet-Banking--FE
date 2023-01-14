@@ -29,6 +29,17 @@ function CK(props) {
     );
     return { status: res.status, data: res.data };
   };
+  const createContact = async () => {
+    const data = {
+      Id1: localStorage.todoApp_userSTK,
+      Id2: idBank,
+      TenGN: "",
+    };
+
+    const res = await instance.post(`users/createContact`, data);
+    return res.status;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const getinfo = async () => {
@@ -112,7 +123,9 @@ function CK(props) {
       setMessageErrorBank("");
       setMessageError1("");
       setMessageError2("");
-      setOpen(true);
+      createContact().then((value) => {
+        alert("Lưu thành công");
+      });
     }
   };
 
@@ -171,10 +184,10 @@ function CK(props) {
             </div>
           </div>
         </div>
-        <button type="button1-ck" onSubmit={handleSubmitBanking}>
+        <button type="button1-ck" onClick={handleSubmitBanking}>
           Chuyển khoản
         </button>
-        <button type="button1-ck" onSubmit={handleSave}>
+        <button type="button1-ck" onClick={handleSave}>
           Lưu thông tin
         </button>
         <Link to="/">

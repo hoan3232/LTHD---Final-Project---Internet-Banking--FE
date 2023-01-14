@@ -84,7 +84,7 @@ function ListCK(props) {
       </div>
 
       <Dialog
-        open={open} 
+        open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
