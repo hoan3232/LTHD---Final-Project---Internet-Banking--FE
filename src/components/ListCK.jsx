@@ -97,12 +97,9 @@ function ListCK(props) {
           >
             <div>
               {" "}
-              Tên người dùng : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Id}
+              Tên người dùng : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Ten_DK}
             </div>
-            <div>
-              {" "}
-              Số tài khoản : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Ten_DK}
-            </div>
+            <div> Số tài khoản : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.STK}</div>
             <div> Email : {userSelect?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Email}</div>
             <div>
               {" "}
