@@ -105,12 +105,12 @@ export default function Login(props) {
         <Link to="/submitemail">
           <div className="changepass">Change Password</div>
         </Link>
-        <Link to="/employee">
+        {/* <Link to="/employee">
           <div className="changepass">Employee</div>
         </Link>
         <Link to="/administrator">
           <div className="changepass">Administrator</div>
-        </Link>
+        </Link> */}
       </form>
     </div>
   );

@@ -4,7 +4,7 @@ import TodoAppContext from "../todoAppContext.js";
 import { Link } from "react-router-dom";
 import { data } from "../constant/temp-data.jsx";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -13,7 +13,10 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { instance } from "../utils";
 function CK(props) {
+  const { state } = useLocation();
+  const { user } = state;
   const [open, setOpen] = useState(false);
+  // const [nameBank, setNameBank] = useState("");
   const [idBank, setIdBank] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -134,9 +137,26 @@ function CK(props) {
   const handleCloseAndBack = () => {
     setOpen(false);
   };
+  // useEffect(() => {
+  //   console.log(messageError1, messageError2);
+  // }, [messageError1, messageError2]);
+
   useEffect(() => {
-    console.log(messageError1, messageError2);
-  }, [messageError1, messageError2]);
+    if (!(Object.keys(user).length === 0)) {
+      setName(user?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Ten_DK);
+      setEmail(user?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Email);
+      setPhone(user?.TK_TT_DS_GN_Id2ToTK_TT.DS_TK.Phone);
+      setIdBank(user?.TK_TT_DS_GN_Id2ToTK_TT.STK);
+      // setNameBank(user?.NganHang);
+    }
+    else {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setIdBank("");
+      // setNameBank("");
+    }
+  }, [user]);
 
   return (
     <div className="container2">

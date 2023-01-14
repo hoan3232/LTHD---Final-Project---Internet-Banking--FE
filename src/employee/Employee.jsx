@@ -23,8 +23,8 @@ function Employee() {
           <button type="submit">Xem lịch sử giao dịch</button>
         </div>
       </Link>
-      <Link to="/">
-        <div className="changepass">Back</div>
+      <Link to="/loginemployee">
+        <div className="changepass">Logout</div>
       </Link>
     </div>
   );
