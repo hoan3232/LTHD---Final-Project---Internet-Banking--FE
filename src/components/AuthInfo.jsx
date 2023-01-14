@@ -17,11 +17,11 @@
 // }
 
 import { useNavigate } from "react-router-dom";
-import { data } from "../constant/temp-data";
-console.log(data);
-const user = data[0];
+import React, { useEffect, useState } from "react";
+import { instance } from "../utils";
 
 const AuthInfo = () => {
+  const [sodu, setsodu] = useState(0);
   const navigate = useNavigate();
   const btnSignOut_Clicked = function (e) {
     delete localStorage.todoApp_accessToken;
@@ -29,20 +29,26 @@ const AuthInfo = () => {
     navigate("/login");
   };
 
+  useEffect(() => {
+    const getNN = async () => {
+      const res = await instance.get(
+        `users/info/${localStorage.todoApp_userSTK}`
+      );
+      setsodu(res.data.So_Du);
+    };
+    getNN();
+  }, []);
   return (
-    console.log("1: " + localStorage.todoApp_userSodu),
-    (
-      <div className="Infor">
-        <div className="nav">
-          <div>Số tài khoản: {localStorage.todoApp_userSTK}</div>
-          <div>Tên người dùng: {localStorage.todoApp_userName}</div>
-          <div>Số dư khả dụng: {localStorage.todoApp_userSodu}</div>
-        </div>
-        <button type="button" onClick={btnSignOut_Clicked}>
-          Sign out
-        </button>
+    <div className="Infor">
+      <div className="nav">
+        <div>Số tài khoản: {localStorage.todoApp_userSTK}</div>
+        <div>Tên người dùng: {localStorage.todoApp_userName}</div>
+        <div>Số dư khả dụng: {sodu}</div>
       </div>
-    )
+      <button type="button" onClick={btnSignOut_Clicked}>
+        Sign out
+      </button>
+    </div>
   );
 };
 

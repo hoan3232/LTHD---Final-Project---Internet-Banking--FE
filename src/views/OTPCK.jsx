@@ -6,12 +6,12 @@ import React, { useEffect, useState } from "react";
 
 import { instance, parseJwt } from "../utils.js";
 
-function OTP(props) {
+function OTPCK(props) {
   const [otp, setOtp] = useState();
   const [result, setResult] = useState("");
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { user, hash } = state;
+  const { hash, user, amount, message } = state;
   const handleInfo = (val) => {
     setOtp(val);
   };
@@ -20,22 +20,21 @@ function OTP(props) {
     const data = {
       hash: hash,
       otp: otp,
-      email: user,
+      email: localStorage.todoApp_userEmail,
+      Id1: localStorage.todoApp_userSTK,
+      Id2: user,
+      amount: amount,
     };
-    const res = await instance.post(`otpck/verifyOTP`, data);
+    const res = await instance.put(`users/transfer`, data);
     return res.status;
   };
 
   const handleSubmit = () => {
     verifyOTP()
       .then((value) => {
-        if (value === 201)
-          navigate("/", {
-            state: {
-              user: user,
-            },
-          });
-        else {
+        if (value === 201) {
+          navigate("/");
+        } else {
           alert("Invalid OTP, please check your OTP code again.");
         }
       })
@@ -59,6 +58,7 @@ function OTP(props) {
             placeholder="OTP"
             value={otp}
             onChange={(event) => handleInfo(event.target.value)}
+            autoFocus
           />
         </div>
         <div className="fg mt-3">
@@ -66,11 +66,11 @@ function OTP(props) {
             Xác nhận
           </button>
         </div>
-        <Link to="/submitemailck">
+        <Link to="/transfer">
           <button type="button1-ck">Back</button>
         </Link>
       </form>
     </div>
   );
 }
-export default OTP;
+export default OTPCK;

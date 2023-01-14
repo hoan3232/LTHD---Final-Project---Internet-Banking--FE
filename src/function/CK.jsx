@@ -23,7 +23,12 @@ function CK(props) {
   const [messageError1, setMessageError1] = useState("");
   const [messageError2, setMessageError2] = useState("");
   const [messageErrorBank, setMessageErrorBank] = useState("");
-
+  const getOTP = async () => {
+    const res = await instance.post(
+      `otp/sendOTP/${localStorage.todoApp_userEmail}`
+    );
+    return { status: res.status, data: res.data };
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const getinfo = async () => {
@@ -71,13 +76,24 @@ function CK(props) {
       setMessageError1("");
       setMessageError2("");
       setOpen(true);
+      getOTP().then((value) => {
+        {
+          navigate("/otpck", {
+            state: {
+              hash: value.data.hash,
+              user: idBank,
+              amount: money,
+              message: message,
+            },
+          });
+        }
+      });
     }
   };
   const navigate = useNavigate();
 
   const handleCloseAndBack = () => {
     setOpen(false);
-    navigate(`/`);
   };
   useEffect(() => {
     console.log(messageError1, messageError2);
