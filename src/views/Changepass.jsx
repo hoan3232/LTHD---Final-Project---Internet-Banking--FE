@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import React, { useEffect, useState } from "react";
 import { instance, parseJwt } from "../utils.js";
 export default function Changepass(props) {
   const nagivate = useNavigate();
-  const location = useLocation(); 
-
+  const location = useLocation();
+  const { state } = useLocation();
+  const { user } = state;
   const {
     register,
     handleSubmit,
@@ -18,19 +19,16 @@ export default function Changepass(props) {
     // console.log(data);
 
     try {
-      const res = await instance.post("/auth", data);
-      if (res.data.authenticated) {
+      const res = await instance.post(`users/changepassword/${user}`, {
+        password: data.password,
+      });
+      if (res.status === 201) {
         // console.log(res.data.accessToken);
-        localStorage.todoApp_accessToken = res.data.accessToken;
-
-        const obj = parseJwt(res.data.accessToken);
-        localStorage.todoApp_userId = obj.userId;
-
         // console.log(location.state);
-        const retUrl = location.state?.from?.pathname || "/";
+        const retUrl = location.state?.from?.pathname || "/login";
         nagivate(retUrl);
       } else {
-        alert("Invalid login.");
+        alert("Invalid password.");
       }
     } catch (error) {
       if (error.response) {
@@ -50,17 +48,6 @@ export default function Changepass(props) {
     <div className="container">
       <h2>Change Password</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="fg">
-          <input
-            type="text"
-            placeholder="Username"
-            autoFocus
-            {...register("username", { required: true })}
-          />
-        </div>
-        <div className="fg">
-          {errors.username && <span>Username is invalid</span>}
-        </div>
         <div className="fg mt-2">
           <input
             type="password"

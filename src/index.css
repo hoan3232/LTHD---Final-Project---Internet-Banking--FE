@@ -14,7 +14,10 @@ body {
   width: 800px;
   margin: 0 auto;
 }
-
+.g-recaptcha {
+  transform: scale(1.2);
+  transform-origin: 0 0;
+}
 h3 {
   color: #333;
   font-weight: bold;
@@ -302,7 +305,6 @@ button[type="button1-ck"] {
   color: red;
   margin-right: 190px;
 }
-
 
 .changepass {
   margin-top: 10px;
