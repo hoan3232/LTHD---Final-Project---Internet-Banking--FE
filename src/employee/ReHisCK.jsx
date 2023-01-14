@@ -9,13 +9,29 @@ export default function ReHisCK(props) {
     setTerm(e.target.value);
   };
 
-  const data = {
+
+
+  const data1 = {
     userId: "emp01",
+  };
+
+  const data2 = {
+    userId: "emp01",
+    STK: term
+  };
+
+  const getTrans = async () => {
+    const res = await instance.post(
+      'employee/trans', data2
+    );
+    console.log(term);
+    setList(res.data);
+
   };
 
   useEffect(() => {
     const getHis = async () => {
-      const res = await instance.post(`employee/all`, data);
+      const res = await instance.post(`employee/all`, data1);
       setList(res.data);
     };
     getHis();
@@ -28,9 +44,10 @@ export default function ReHisCK(props) {
           type="text"
           value={term}
           onChange={txtTerm_Changed}
+
           // onKeyUp={txtTerm_KeyUp}
         />
-        <button type="button">Tìm kiếm</button>
+        <button type="button" onClick={getTrans}>Tìm kiếm</button>
       </div>
       <div className="table">
         <table>
