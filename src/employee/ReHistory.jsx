@@ -16,7 +16,7 @@ function ReHistory(props) {
   return (
     <div className="container2">
       <h2>Lịch sử giao dịch</h2>
-      <div className="option">
+      {/* <div className="option">
         <label for="card">Tùy chọn lịch sử giao dịch:</label>
         <select
           id="card"
@@ -28,7 +28,7 @@ function ReHistory(props) {
             Lịch sử chuyển khoản
           </option>
         </select>
-      </div>
+      </div> */}
 
       {option === "rehistransfer" && <ReHisCK />}
       {option === "rehisreceive" && <ReHisNT />}
