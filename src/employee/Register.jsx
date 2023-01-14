@@ -55,19 +55,17 @@ function Register(props) {
   };
 
   const data = {
-    userId: "emp01",
+    userId: localStorage.todoApp_userId,
     Id: id,
     Pass: pass,
     Ten_DK: name,
     Ten_Goi_Nho: name,
     Email: email,
-    Phone: phone
-  }
-  
+    Phone: phone,
+  };
+
   const create = async () => {
-    const res = await instance.post(
-      'employee/createUser', data
-    );
+    const res = await instance.post("employee/createUser", data);
     setList(res.data);
   };
 
