@@ -3,6 +3,17 @@ import { instance } from "../utils";
 
 export default function ListNN(props) {
   const [list, setList] = useState([]);
+  const handleInfo = async (val) => {
+    await instance.put(`users/payment`, {
+      Id1: localStorage.todoApp_userSTK,
+      Id2: val.Ma_Ng_Nhan,
+      amount: val.So_No,
+    });
+    const res = await instance.get(
+      `users/notice/${localStorage.todoApp_userSTK}`
+    );
+    setList(res.data);
+  };
   useEffect(() => {
     const getNN = async () => {
       const res = await instance.get(
@@ -50,9 +61,13 @@ export default function ListNN(props) {
                 <td>{val.TK_TT_DS_NN_Ma_Ng_NhanToTK_TT.DS_TK.Ten_DK}</td>
                 <td>{val.So_No}</td>
                 <td>{val.Noi_Dung}</td>
-                <td>
-                  <button onClick={() => handleInfo(val)}>Chi tiết</button>
-                </td>
+                {val.Trang_Thai ? (
+                  <td>{"Đã trả"}</td>
+                ) : (
+                  <td>
+                    <button onClick={() => handleInfo(val)}>Trả nợ</button>
+                  </td>
+                )}
               </tr>
             );
           })}
